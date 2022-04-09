@@ -1,38 +1,37 @@
 # B2B CRM System in Laravel 8.0 with PHP [>8.0]
-<p align="center">
-  <img src="https://i.ibb.co/z8ssKdN/Przechwytywanie.jpg">
-</p>
 
-SoftCRM is a database system containing a number of useful functions and solutions to facilitate B2B company management. It uses data analysis about customers' history with a company and to improve business relationships with customers, specifically focusing on customer retention and ultimately driving sales growth.
 
-<img src="https://i.ibb.co/xMcZF2V/Przechwytywanie.jpg">
+SoftCRM — это система баз данных, содержащая ряд полезных функций и решений для облегчения управления компанией B2B. Он
+использует анализ данных об истории клиентов с компанией и для улучшения деловых отношений с клиентами, уделяя особое
+внимание удержанию клиентов и, в конечном итоге, стимулированию роста продаж.
 
-## Functionality:
-#### Dependencies:
-- Customer management
-- Employee management
-- Business management
-- Contract management between companies
 
-#### Marketing:
-- Product management
-- Task management for employees
+## Функциональность:
+#### Зависимости:
+- Управление клиентами
+- Управление персоналом
+- Управление бизнесом
+- Ведение договоров между компаниями
 
-#### Sales:
-- Finance management
-- Sales management
+#### Маркетинг:
+- Управление продуктом
+- Управление задачами для сотрудников
+- 
+#### Продажи:
+- Управление финансами
+- Управление продажами
 
-#### Statistics:
-- full statistics from every day, yesterday, week and year
-- number of operations in the system,
+#### Статистика:
+- полная статистика за каждый день, вчера, неделю и год
+- количество операций в системе,
 
-####  Keep in mind that this is not the end of the functionality of this system because I am constantly developing it!
+####  Имейте в виду, что на этом функционал этой системы не заканчивается, потому что я постоянно ее развиваю!
 
-## Installation
+## Установка
 
-#### 1. To install run the following commands in a working directory: 
+#### 1. Для установки выполните следующие команды в рабочем каталоге:
 ```
-git clone https://github.com/KamilGrzechulski/SoftCRM.git
+git clone https://github.com/MadarPodarok/SoftCRM.git
 ```
 #### 2. Now run and make sure you have the composer installed on your machine:
 ```

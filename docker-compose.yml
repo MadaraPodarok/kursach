@@ -1,0 +1,82 @@
+version: '3.7'
+services:
+  app:
+    depends_on:
+      - database
+    build:
+      context: .
+      dockerfile: ./docker/php/Dockerfile
+    container_name: php-app
+    hostname: app
+    restart: unless-stopped
+    working_dir: /var/www
+    volumes:
+      - type: bind
+        source: ./
+        target: /var/www
+      - type: bind
+        source: ./docker/php/local.ini
+        target: /usr/local/etc/php/conf.d/local.ini
+        read_only: true
+      - type: bind
+        source: ./docker/supervisor/worker.conf
+        target: /etc/supervisor/conf.d/worker.conf
+    entrypoint: bash /var/www/docker/php/entrypoint.sh
+
+  webserver:
+    hostname: webserver
+    depends_on:
+      - app
+    image: 'nginx:alpine'
+    restart: unless-stopped
+    volumes:
+      - type: bind
+        source: ./
+        target: /var/www
+      - type: bind
+        source: ./docker/nginx/conf.d
+        target: /etc/nginx/conf.d
+        read_only: true
+      - type: bind
+        source: ./storage/logs/nginx
+        target: /var/log/nginx
+    ports:
+      - target: 80
+        published: 80
+      - target: 443
+        published: 81
+
+  database:
+    image: mysql:5.7.22
+    container_name: database
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: '${DB_DATABASE}'
+      MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - dbdata:/var/lib/mysql/
+      - ./docker/mysql/my.cnf:/etc/mysql/my.conf
+
+  rabbit:
+    image: 'rabbitmq:management'
+    hostname: rabbit
+    ports:
+      - '15672:15672'
+      - '5672:5672'
+    environment:
+      - RABBITMQ_ERLANG_COOKIE=online_pay
+
+volumes:
+  redis_data:
+    driver: local
+  rabbitmq_data:
+    driver: local
+  dbdata:
+    driver: local
+
+
